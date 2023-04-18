@@ -1,5 +1,5 @@
 import type { InferGetStaticPropsType } from "next";
-import getAllProducts from "@/framework/shopify/product/get-all-products";
+import getAllProducts from "@shopify/product/get-all-products";
 
 export async function getStaticProps() {
   const products = await getAllProducts();
@@ -8,7 +8,6 @@ export async function getStaticProps() {
     props: {
       products,
     },
-
     // To revalidate this object every 4 hours
     // and update with new products.
     revalidate: 4 * 60 * 60,
@@ -19,5 +18,5 @@ export async function getStaticProps() {
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <div>{products}</div>;
+  return <div>{JSON.stringify(products)}</div>;
 }
