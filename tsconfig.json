@@ -34,6 +34,12 @@
       ],
       "@framework/*": [
         "framework/shopify/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@assets/*": [
+        "assets/*"
       ]
     }
   },
