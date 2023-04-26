@@ -6,7 +6,8 @@
             transform: scale(0.88)
         }
 
-        & .productImage {
+        & .productImage,
+        & .productImageSlim{
             transform: scale(1.15);
         }
     }
@@ -21,13 +22,20 @@
 
     &:nth-child(6n + 5) .productBg {
         @apply bg-blue;
-    }
+      }
 
     &:nth-child(6n + 6) .productBg {
-        @apply bg-cyan;
+    @apply bg-cyan;
     }
+}
+
+.productImage {
+    @apply transition-transform duration-500 block relative w-full h-auto z-30;
+}
 
 
+.productImageSlim {
+    @apply transition-transform duration-500 block relative z-30;
 }
 
 .productBg {
@@ -64,11 +72,5 @@
 .productPrice {
     @apply pb-4 pt-2 px-6 font-semibold text-sm bg-primary;
     letter-spacing: 0.4px;
-}
-
-.productImage {
-
-    @apply transition-transform duration-500 block relative w-full h-auto z-30;
-
 }
 
