@@ -1,10 +1,10 @@
 import { Container } from "@/components/ui";
 import Link from "next/link";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import s from "./Navbar.module.css";
 import { Usernav } from "@components/common";
 
-const Navbar: FC<ReactNode> = () => {
+const Navbar: FC = () => {
   return (
     <Container>
       <div className={s.root}>

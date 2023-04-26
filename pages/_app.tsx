@@ -1,6 +1,7 @@
+import "@assets/main.css";
+import { UIProvider } from "@/components/ui/context";
 import { AppProps } from "next/app";
 import { FC } from "react";
-import "@assets/main.css";
 
 type NoopProps = {
   children: React.ReactNode;
@@ -18,9 +19,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? Noop;
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <UIProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </UIProvider>
   );
 }
 
