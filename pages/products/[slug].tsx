@@ -6,6 +6,7 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from "next";
+import { ProductView } from "@/components/product";
 
 // Fetch all of the product slugs
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -39,7 +40,7 @@ export const getStaticProps = async ({
 export default function ProductSlug({
   product,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <div>{JSON.stringify(product, null, 2)}</div>;
+  return <div>{product && <ProductView product={product} />}</div>;
 }
 
 ProductSlug.Layout = Layout;
