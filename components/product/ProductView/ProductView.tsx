@@ -1,16 +1,34 @@
 import cn from "classnames";
-import { FC } from "react";
+import { FC, useState } from "react";
 import s from "./ProductView.module.css";
 import { Button, Container } from "@components/ui";
 import Image from "next/image";
 import { Product } from "@common/types/product";
-import ProductSlider from "../ProductSlider/ProductSlider";
+import { ProductSlider, Swatch } from "@components/product";
+import { Choices, getVariant } from "../helpers";
+import { useUI } from "@/components/ui/context";
 
 interface Props {
   product: Product;
 }
 
 const ProductView: FC<Props> = ({ product }) => {
+  const [choices, setChoices] = useState<Choices>({});
+  const { openSidebar } = useUI();
+  const variant = getVariant(product, choices);
+
+  const addToCart = () => {
+    try {
+      const item = {
+        productId: String(product.id),
+        variant: variant?.id,
+      };
+
+      alert(JSON.stringify(item));
+      openSidebar();
+    } catch {}
+  };
+
   return (
     <Container>
       <div className={cn(s.root, "fit mb-5")}>
@@ -40,16 +58,40 @@ const ProductView: FC<Props> = ({ product }) => {
         </div>
         <div className={s.sidebar}>
           <section>
-            <div className="pb-4">
-              <h2 className="uppercase font-medium">Color</h2>
-              <div className="flex flex-row py-4">Variant Options Here!</div>
-            </div>
+            {product.options.map((option) => (
+              <div className="pb-4" key={option.id}>
+                <h2 className="uppercase font-medium">{option.displayName}</h2>
+                <div className="flex flex-row py-4">
+                  {option.values.map((opt) => {
+                    const activeChoice =
+                      choices[option.displayName.toLowerCase()];
+                    return (
+                      <Swatch
+                        key={`${option.id}-${opt.label}`}
+                        label={opt.label}
+                        color={opt.hexColor}
+                        variant={option.displayName}
+                        active={opt.label.toLowerCase() === activeChoice}
+                        onClick={() => {
+                          setChoices({
+                            ...choices,
+                            [option.displayName.toLowerCase()]:
+                              opt.label.toLowerCase(),
+                          });
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
             <div className="pb-14 break-words w-full max-w-xl text-lg">
               {product.description}
             </div>
           </section>
           <div>
-            <Button className={s.button} onClick={() => alert("test")}>
+            <Button className={s.button} onClick={addToCart}>
               Add to Cart
             </Button>
           </div>
