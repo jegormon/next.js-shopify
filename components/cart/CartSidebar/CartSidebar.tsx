@@ -5,9 +5,9 @@ import { useUI } from "@/components/ui/context";
 import useCart from "@framework/cart/use-cart";
 
 const CartSidebar: FC = () => {
-  const isEmpty = false;
+  const isEmpty = true;
   const { closeSidebar } = useUI();
-  const cart = useCart();
+  const { data } = useCart();
 
   const rootClass = cn("h-full flex flex-col", {
     "bg-secondary text-secondary": isEmpty,
