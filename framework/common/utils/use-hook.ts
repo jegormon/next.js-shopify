@@ -33,9 +33,7 @@ const useData = (hook: any, fetcher: ApiFetcher, ctx: any) => {
       throw error;
     }
   };
-  console.log(hook);
 
-  debugger;
   const res = useSWR(hook.fetchOptions.query, hookFetcher, ctx.swrOptions);
   return res;
 };
