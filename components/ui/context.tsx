@@ -57,7 +57,7 @@ export const UIProvider: FC<{ children: ReactNode }> = ({ children }) => {
       openSidebar,
       closeSidebar,
     };
-  }, [state.isSidebarOpen]);
+  }, [state]);
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 };
