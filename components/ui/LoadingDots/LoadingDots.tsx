@@ -1,4 +1,4 @@
-import s from "./LoadingDots.module.css";
+import s from "./loadingDots.module.css";
 
 const LoadingDots: React.FC = () => {
   return (
