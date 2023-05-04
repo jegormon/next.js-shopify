@@ -1,5 +1,5 @@
 import { ApiFetcherOptions, ApiFetcherResults } from "@common/types/api";
-import { API_URL } from "../const";
+import { API_URL, STOREFRONT_TOKEN } from "../const";
 
 const fetchApi = async <T>({
   query,
@@ -10,6 +10,7 @@ const fetchApi = async <T>({
     // Headers are for expected return
     headers: {
       "Content-Type": "application/json",
+      "X-Shopify-Storefront-Access-Token": STOREFRONT_TOKEN!,
     },
     body: JSON.stringify({
       query,

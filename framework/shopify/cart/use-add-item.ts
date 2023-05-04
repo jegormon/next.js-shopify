@@ -24,6 +24,7 @@ export const handler: MutationHook<AddItemHookDescriptor> = {
   fetcherOptions: {
     query: checkoutLineItemsAddMutation,
   },
+
   fetcher: async ({ fetch, options, input }) => {
     const variables = {
       checkoutId: getCheckoutId(),

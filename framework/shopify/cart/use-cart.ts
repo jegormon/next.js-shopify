@@ -4,6 +4,8 @@ import { useMemo } from "react";
 import { Cart } from "@/framework/common/types/cart";
 import { SWRHook } from "@/framework/common/types/hooks";
 import { Checkout } from "../schema";
+import { useApiProvider } from "@/framework/common";
+import Cookies from "js-cookie";
 
 export default useCart as UseCart<typeof handler>;
 
@@ -40,15 +42,19 @@ export const handler: SWRHook<UseCartHookDescriptor> = {
     return cart;
   },
 
-  // TODO: Fix this issue
   useHook:
     ({ useData }) =>
     () => {
+      const { checkoutCookie } = useApiProvider();
       const response = useData({
         swrOptions: {
           revalidateOnFocus: false,
         },
       });
+
+      if (response.data?.completedAt) {
+        Cookies.remove(checkoutCookie);
+      }
 
       return useMemo(() => {
         return {
