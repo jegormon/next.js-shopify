@@ -8,7 +8,7 @@
 
 .productDisplay {
   @apply relative flex px-0 pb-0 box-border col-span-1 bg-violet;
-  min-height: 300px;
+  min-height: 600px;
 
   @screen md {
     min-height: 700px;
@@ -65,21 +65,16 @@
 }
 
 .imageContainer {
- 
-  @screen lg {
-    @apply col-span-6 py-24 justify-between;
-  }
-
   & > div {
-    @apply h-full ;
+    @apply h-full;
     & > div {
-      @apply h-full ;
+      @apply h-full;
     }
   }
 }
 
 .img {
-  @apply w-full h-auto max-h-full object-cover ;  
+  @apply w-full h-auto max-h-full object-cover;
 }
 
 .button {
